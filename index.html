@@ -43,6 +43,20 @@
       margin-bottom: 30px;
     }
 
+    /* Filter panel */
+    .filters {
+      margin-bottom: 20px;
+    }
+
+    .filters select {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+      width: 150px;
+    }
+
     /* Search Styling */
     .gcse-search {
       display: flex;
@@ -86,12 +100,37 @@
   <div class="container">
     <h1>Your Trusted Partner in Real Estate Investments</h1>
     <p>Discover the most valuable property deals with expert AI real estate Agent.</p>
-    
+
+    <!-- Filter Dropdowns -->
+    <div class="filters">
+      <select id="location">
+        <option value="">Location</option>
+        <option value="Islamabad">Islamabad</option>
+        <option value="Lahore">Lahore</option>
+        <option value="Karachi">Karachi</option>
+      </select>
+
+      <select id="type">
+        <option value="">Property Type</option>
+        <option value="Residential">Residential</option>
+        <option value="Commercial">Commercial</option>
+        <option value="Luxury">Luxury</option>
+      </select>
+
+      <select id="budget">
+        <option value="">Budget</option>
+        <option value="5 Million PKR">5 Million PKR</option>
+        <option value="10 Million PKR">10 Million PKR</option>
+        <option value="20 Million PKR">20 Million PKR</option>
+      </select>
+    </div>
+
     <div class="gcse-search"></div>
   </div>
 
   <footer>
     © 2025 Real Estate Investment Agent. All rights reserved.
   </footer>
+
 </body>
 </html>
