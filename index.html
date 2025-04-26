@@ -2,76 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Find Your Dream Property | Real Estate Search</title>
-  
-  <!-- Load Google Custom Search Engine -->
+  <title>Real Estate Investment Agent</title>
   <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
-  
-  <!-- Basic Styling -->
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #74ebd5, #acb6e5);
-      min-height: 100vh;
+      background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: white;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      text-align: center;
-      color: #333;
     }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #ffffff;
-      text-shadow: 1px 1px 2px #00000050;
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
     }
-    
-    .search-box {
-      width: 80%;
-      max-width: 600px;
-      background: white;
+    .container {
+      z-index: 1;
+      position: relative;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-    
-    /* Make search bar bigger */
-    input.gsc-input {
-      padding: 12px !important;
-      font-size: 1.2rem !important;
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
     }
-    
-    /* Style search button */
-    input.gsc-search-button {
-      padding: 10px 20px !important;
-      font-size: 1rem !important;
-      background-color: #4CAF50 !important;
-      color: white !important;
-      border-radius: 8px !important;
-      border: none !important;
+    p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
     }
-    
-    /* Responsive */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
+    .gcse-searchresults-only {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0.8em;
+      color: #ddd;
     }
   </style>
 </head>
 
 <body>
-
-  <h1>Find Your Dream Property</h1>
-  
-  <div class="search-box">
-    <!-- Google Search Box + Results -->
-    <div class="gcse-search"></div>
+  <div class="overlay"></div>
+  <div class="container">
+    <h1>Your Trusted Partner in Real Estate Investments</h1>
+    <p>Discover the most valuable property deals with expert guidance.</p>
+    <div class="gcse-searchresults-only"></div>
   </div>
 
+  <footer>
+    © 2025 Real Estate Investment Agent. All rights reserved.
+  </footer>
 </body>
 </html>
