@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Real Estate Investment Agent</title>
   <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
-  
   <style>
     body {
       margin: 0;
@@ -19,71 +18,37 @@
       flex-direction: column;
       justify-content: center;
     }
-
     .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.6);
       z-index: -1;
     }
-
     .container {
       z-index: 1;
       position: relative;
       padding: 20px;
     }
-
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
     }
-
-    p {
+    p.subtitle {
       font-size: 1.5em;
       margin-bottom: 30px;
     }
-
-    /* Filter panel */
-    .filters {
-      margin-bottom: 20px;
-    }
-
-    .filters select {
-      padding: 10px;
-      margin: 5px;
-      border-radius: 8px;
-      border: none;
+    .instruction {
       font-size: 1em;
-      width: 150px;
+      color: #ddd;
+      margin-bottom: 15px;
     }
-
-    /* Search Styling */
     .gcse-search {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    input.gsc-input {
-      max-width: 400px !important;
-      width: 90%;
+      background: white;
+      padding: 15px;
       border-radius: 8px;
-      padding: 10px;
-      font-size: 16px;
+      max-width: 500px;
       margin: 0 auto;
     }
-
-    .gsc-search-button {
-      background-color: #4CAF50 !important;
-      color: white !important;
-      border-radius: 8px;
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      border: none !important;
-      cursor: pointer;
-    }
-
     footer {
       position: absolute;
       bottom: 10px;
@@ -91,46 +56,29 @@
       font-size: 0.8em;
       color: #ddd;
     }
+    input.gsc-input {
+      border-radius: 6px !important;
+      padding: 8px !important;
+    }
+    .gsc-search-button {
+      border-radius: 6px !important;
+    }
   </style>
 </head>
 
 <body>
   <div class="overlay"></div>
-
   <div class="container">
     <h1>Your Trusted Partner in Real Estate Investments</h1>
-    <p>Discover the most valuable property deals with expert AI real estate Agent.</p>
-
-    <!-- Filter Dropdowns -->
-    <div class="filters">
-      <select id="location">
-        <option value="">Location</option>
-        <option value="Islamabad">Islamabad</option>
-        <option value="Lahore">Lahore</option>
-        <option value="Karachi">Karachi</option>
-      </select>
-
-      <select id="type">
-        <option value="">Property Type</option>
-        <option value="Residential">Residential</option>
-        <option value="Commercial">Commercial</option>
-        <option value="Luxury">Luxury</option>
-      </select>
-
-      <select id="budget">
-        <option value="">Budget</option>
-        <option value="5 Million PKR">5 Million PKR</option>
-        <option value="10 Million PKR">10 Million PKR</option>
-        <option value="20 Million PKR">20 Million PKR</option>
-      </select>
+    <p class="subtitle">Discover the most valuable property deals with expert AI real estate Agent.</p>
+    <div class="instruction">
+      Select a property type below, then enter your location or keyword to find best deals.
     </div>
-
     <div class="gcse-search"></div>
   </div>
 
   <footer>
     © 2025 Real Estate Investment Agent. All rights reserved.
   </footer>
-
 </body>
 </html>
