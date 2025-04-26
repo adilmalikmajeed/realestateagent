@@ -33,21 +33,29 @@
       font-size: 3em;
       margin-bottom: 10px;
     }
-    p.subtitle {
+    p {
       font-size: 1.5em;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
     }
     .instruction {
       font-size: 1em;
+      margin-bottom: 30px;
       color: #ddd;
-      margin-bottom: 15px;
     }
     .gcse-search {
       background: white;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 10px;
+      border-radius: 20px;
       max-width: 500px;
       margin: 0 auto;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    input.gsc-input {
+      border-radius: 20px !important;
+    }
+    .gsc-search-box-tools .gsc-search-box .gsc-input {
+      max-width: 100% !important;
+      border-radius: 20px !important;
     }
     footer {
       position: absolute;
@@ -56,13 +64,6 @@
       font-size: 0.8em;
       color: #ddd;
     }
-    input.gsc-input {
-      border-radius: 6px !important;
-      padding: 8px !important;
-    }
-    .gsc-search-button {
-      border-radius: 6px !important;
-    }
   </style>
 </head>
 
@@ -70,10 +71,8 @@
   <div class="overlay"></div>
   <div class="container">
     <h1>Your Trusted Partner in Real Estate Investments</h1>
-    <p class="subtitle">Discover the most valuable property deals with expert AI real estate Agent.</p>
-    <div class="instruction">
-      Select a property type below, then enter your location or keyword to find best deals.
-    </div>
+    <p>Discover the most valuable property deals with expert AI real estate Agent.</p>
+    <div class="instruction">Select a property type and enter your location or keywords below.</div>
     <div class="gcse-search"></div>
   </div>
 
