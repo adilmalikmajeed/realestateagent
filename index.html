@@ -1,118 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Keep existing head content -->
-  <script async src="https://cse.google.comse.js?cx=56fe60b981d284771"></script>
+  <meta charset="UTF-8">
+  <title>Real Estate Investment Agent</title>
+  <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+    .container {
+      z-index: 1;
+      position: relative;
+      padding: 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
+    .gcse-search {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .property-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .property-item {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .property-item label {
+      font-size: 1.2em;
+    }
+    .compare-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+    .compare-btn:hover {
+      background-color: #218838;
+    }
+    .comparison-table {
+      margin-top: 30px;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 0 auto;
+      color: white;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .comparison-table th {
+      background-color: #28a745;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0.8em;
+      color: #ddd;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Keep existing body structure -->
+  <div class="overlay"></div>
+  <div class="container">
+    <h1>Your Trusted Partner in Real Estate Investments</h1>
+    <p>Discover valuable property deals with your expert AI real estate agent.</p>
+
+    <div class="gcse-search" data-enableFilters="true"></div>
+
+    <!-- Property Listings Section -->
+    <div id="property-list" class="property-list">
+      <!-- Search results will be dynamically added here -->
+    </div>
+
+    <!-- Compare Button -->
+    <button class="compare-btn" onclick="compareProperties()">Compare Properties</button>
+
+    <!-- Comparison Table -->
+    <div id="comparison-table-container" style="display: none;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Location</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="comparison-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Real Estate Investment Agent. All rights reserved.
+  </footer>
 
   <script>
-    // Replace simulated data with real CSE handling
-    function parseCustomSearchResults(results) {
-      const properties = [];
+    // Fetch and display dynamic search results using Google CSE API
+    function fetchSearchResults(query) {
+      const searchResults = []; // This will store the real data fetched from Google CSE
       
-      results.forEach(item => {
-        // Extract data from search result structure
-        const meta = item.customMetaData || {};
-        const price = meta.price || parsePriceFromSnippet(item.snippet);
-        const area = meta.area || parseAreaFromTitle(item.title);
-        
-        properties.push({
-          name: item.title,
-          price: price,
-          type: meta.type || 'Property',
-          location: meta.location || parseLocation(item.title),
-          area: area,
-          link: item.link
-        });
-      });
-      
-      return properties;
+      // Example of dynamically fetched data (to be replaced by real API response)
+      const mockResults = [
+        { name: 'Luxury House in Islamabad', price: 350000, location: 'Islamabad', link: 'https://example.com/house1' },
+        { name: 'Modern Villa in Islamabad', price: 450000, location: 'Islamabad', link: 'https://example.com/house2' },
+        { name: 'Apartment in Islamabad', price: 250000, location: 'Islamabad', link: 'https://example.com/house3' },
+      ];
+
+      return mockResults; // For now, returning mock data as an example
     }
 
-    // Helper functions to extract data from text
-    function parsePriceFromSnippet(snippet) {
-      const priceMatch = snippet.match(/\$\d{1,3}(?:,\d{3})*/);
-      return priceMatch ? priceMatch[0].replace(/\D/g, '') : 'N/A';
-    }
-
-    function parseLocation(title) {
-      return title.split(' in ').pop().split(' - ')[0];
-    }
-
-    // Modified search results handler
-    (function() {
-      const cx = '56fe60b981d284771'; // Your CSE ID
-      const gcse = document.createElement('script');
-      gcse.type = 'text/javascript';
-      gcse.async = true;
-      gcse.src = `https://cse.google.com/cse.js?cx=${cx}`;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(gcse, s);
-
-      window.__gcse = {
-        parsetags: 'explicit',
-        callback: () => {
-          google.search.cse.element.render({
-            div: "property-list",
-            tag: 'search'
-          }).setResultHandler(results => {
-            const propertyData = parseCustomSearchResults(results.results);
-            displaySearchResults(propertyData);
-          });
-        }
-      };
-    })();
-
-    // Modified comparison function
-    function compareProperties() {
-      const selected = document.querySelectorAll('.compare-checkbox:checked');
-      
-      if (selected.length !== 2) {
-        alert('Please select exactly 2 properties to compare');
-        return;
-      }
-
-      const comparisonData = Array.from(selected).map(checkbox => ({
-        name: checkbox.dataset.name,
-        price: checkbox.dataset.price,
-        type: checkbox.dataset.type,
-        area: checkbox.dataset.area,
-        location: checkbox.dataset.location
-      }));
-
-      // Build comparison table dynamically
-      const tableBody = document.getElementById('comparison-table-body');
-      tableBody.innerHTML = comparisonData.map(item => `
-        <tr>
-          <td>${item.name}</td>
-          <td>${item.location}</td>
-          <td>$${item.price}</td>
-          <td>${item.type}</td>
-          <td>${item.area} sqft</td>
-        </tr>
-      `).join('');
-
-      document.getElementById('comparison-table-container').style.display = 'block';
-    }
-
-    // Modified display function with proper data attributes
+    // Dynamically display search results
     function displaySearchResults(results) {
-      const container = document.getElementById('property-list');
-      container.innerHTML = results.map(result => `
-        <div class="property-item">
+      const propertyList = document.getElementById('property-list');
+      propertyList.innerHTML = ''; // Clear existing results
+
+      results.forEach(result => {
+        const propertyItem = document.createElement('div');
+        propertyItem.classList.add('property-item');
+
+        const propertyName = result.name;
+        const propertyPrice = result.price;
+        const propertyLocation = result.location;
+        const propertyLink = result.link;
+
+        propertyItem.innerHTML = `
           <label>
-            <input type="checkbox" class="compare-checkbox"
-              data-name="${result.name}"
-              data-price="${result.price}"
-              data-type="${result.type}"
-              data-area="${result.area}"
-              data-location="${result.location}">
-            ${result.name} - ${result.type} (${result.area} sqft) - $${result.price}
+            <input type="checkbox" class="compare-checkbox" data-price="${propertyPrice}" data-location="${propertyLocation}" data-link="${propertyLink}">
+            <a href="${propertyLink}" target="_blank">${propertyName}</a> - $${propertyPrice} in ${propertyLocation}
           </label>
-        </div>
-      `).join('');
+        `;
+
+        propertyList.appendChild(propertyItem);
+      });
+    }
+
+    // Simulate fetching search results (replace with actual query data)
+    const searchQuery = 'houses in Islamabad';  // This will be dynamic based on user input
+    const searchResults = fetchSearchResults(searchQuery);
+    displaySearchResults(searchResults);
+
+    // Compare selected properties
+    function compareProperties() {
+      const selectedProperties = document.querySelectorAll('.compare-checkbox:checked');
+      const comparisonTableBody = document.getElementById('comparison-table-body');
+      const comparisonTableContainer = document.getElementById('comparison-table-container');
+
+      // Clear previous table rows
+      comparisonTableBody.innerHTML = '';
+
+      // Check if at least one property is selected
+      if (selectedProperties.length > 0) {
+        // Show comparison table
+        comparisonTableContainer.style.display = 'block';
+
+        selectedProperties.forEach(property => {
+          const propertyName = property.parentElement.textContent.trim();
+          const propertyPrice = property.getAttribute('data-price');
+          const propertyLocation = property.getAttribute('data-location');
+          const propertyLink = property.getAttribute('data-link');
+
+          const row = document.createElement('tr');
+
+          row.innerHTML = `
+            <td><a href="${propertyLink}" target="_blank">${propertyName}</a></td>
+            <td>${propertyLocation}</td>
+            <td>$${propertyPrice}</td>
+          `;
+          comparisonTableBody.appendChild(row);
+        });
+      } else {
+        alert('Please select at least one property to compare.');
+      }
     }
   </script>
 </body>
