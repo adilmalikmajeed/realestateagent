@@ -5,6 +5,7 @@
   <title>Real Estate Investment Agent</title>
   <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
   <style>
+    /* Same styling as before */
     body {
       margin: 0;
       padding: 0;
@@ -53,6 +54,8 @@
       display: flex;
       flex-direction: column;
       margin-top: 20px;
+      max-width: 600px;
+      margin: 0 auto;
     }
     .property-item {
       background: rgba(255, 255, 255, 0.7);
@@ -63,9 +66,6 @@
     }
     .property-item label {
       font-size: 1.2em;
-    }
-    .property-item input {
-      margin-right: 10px;
     }
     .compare-btn {
       margin-top: 20px;
@@ -114,22 +114,8 @@
     <div class="gcse-search" data-enableFilters="true"></div>
 
     <!-- Property Listings Section -->
-    <div class="property-list">
-      <div class="property-item">
-        <label>
-          <input type="checkbox" class="compare-checkbox" data-price="150000" data-location="Location 1"> Property 1 - $150,000
-        </label>
-      </div>
-      <div class="property-item">
-        <label>
-          <input type="checkbox" class="compare-checkbox" data-price="200000" data-location="Location 2"> Property 2 - $200,000
-        </label>
-      </div>
-      <div class="property-item">
-        <label>
-          <input type="checkbox" class="compare-checkbox" data-price="250000" data-location="Location 3"> Property 3 - $250,000
-        </label>
-      </div>
+    <div id="property-list" class="property-list">
+      <!-- Search results will be dynamically added here -->
     </div>
 
     <!-- Compare Button -->
@@ -186,6 +172,39 @@
         alert('Please select at least one property to compare.');
       }
     }
+
+    // Simulate fetching properties from Google CSE (example data)
+    function displaySearchResults(results) {
+      const propertyList = document.getElementById('property-list');
+
+      results.forEach(result => {
+        const propertyItem = document.createElement('div');
+        propertyItem.classList.add('property-item');
+
+        const propertyName = result.name;
+        const propertyPrice = result.price;
+        const propertyLocation = result.location;
+
+        propertyItem.innerHTML = `
+          <label>
+            <input type="checkbox" class="compare-checkbox" data-price="${propertyPrice}" data-location="${propertyLocation}">
+            ${propertyName} - $${propertyPrice} in ${propertyLocation}
+          </label>
+        `;
+
+        propertyList.appendChild(propertyItem);
+      });
+    }
+
+    // Example data to simulate real search results
+    const searchResults = [
+      { name: 'Luxury House in Islamabad', price: 350000, location: 'Islamabad' },
+      { name: 'Modern Villa in Islamabad', price: 450000, location: 'Islamabad' },
+      { name: 'Apartment in Islamabad', price: 250000, location: 'Islamabad' },
+    ];
+
+    // Display the example search results
+    displaySearchResults(searchResults);
   </script>
 </body>
 </html>
