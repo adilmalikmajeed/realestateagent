@@ -30,8 +30,6 @@
       z-index: 1;
       position: relative;
       padding: 20px;
-      max-width: 800px;
-      width: 100%;
     }
     h1 {
       font-size: 2.8em;
@@ -41,58 +39,39 @@
       font-size: 1.5em;
       margin-bottom: 30px;
     }
-    .gcse-search {
+    .gcse-search, .filters, #results {
       background: white;
       padding: 20px;
       border-radius: 20px;
-      max-width: 400px;
-      margin: 0 auto;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    .property-list {
-      display: flex;
-      flex-direction: column;
-      margin-top: 20px;
       max-width: 600px;
       margin: 0 auto;
-    }
-    .property-item {
-      background: rgba(255, 255, 255, 0.7);
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-    .property-item label {
-      font-size: 1.2em;
-    }
-    .compare-btn {
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
       margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #28a745;
+    }
+    .filters input {
+      padding: 8px;
+      margin: 5px;
+      width: 100%;
+    }
+    .result-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+    }
+    .result-item h3 {
+      margin: 0;
+      font-size: 1.3em;
+    }
+    .result-item p {
+      margin: 10px 0;
+    }
+    .compare-button {
+      background-color: #007BFF;
       color: white;
-      border: none;
+      padding: 10px;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 1.2em;
-    }
-    .compare-btn:hover {
-      background-color: #218838;
-    }
-    .comparison-table {
-      margin-top: 30px;
-      border-collapse: collapse;
-      width: 80%;
-      margin: 0 auto;
-      color: white;
-    }
-    .comparison-table th, .comparison-table td {
-      padding: 12px 20px;
-      border: 1px solid #ddd;
-      text-align: center;
-    }
-    .comparison-table th {
-      background-color: #28a745;
     }
     footer {
       position: absolute;
@@ -103,36 +82,34 @@
     }
   </style>
 </head>
-
 <body>
   <div class="overlay"></div>
   <div class="container">
     <h1>Your Trusted Partner in Real Estate Investments</h1>
     <p>Discover valuable property deals with your expert AI real estate agent.</p>
 
-    <div class="gcse-search" data-enableFilters="true"></div>
-
-    <!-- Property Listings Section -->
-    <div id="property-list" class="property-list">
-      <!-- Search results will be dynamically added here -->
+    <!-- Search bar -->
+    <div class="gcse-search">
+      <input type="text" id="search-input" placeholder="Search for properties">
+      <button id="search-button">Search</button>
     </div>
 
-    <!-- Compare Button -->
-    <button class="compare-btn" onclick="compareProperties()">Compare Properties</button>
+    <!-- Filters -->
+    <div class="filters">
+      <label for="min-price">Min Price:</label>
+      <input type="number" id="min-price" placeholder="e.g. 100000">
 
-    <!-- Comparison Table -->
-    <div id="comparison-table-container" style="display: none;">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Location</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody id="comparison-table-body"></tbody>
-      </table>
+      <label for="max-price">Max Price:</label>
+      <input type="number" id="max-price" placeholder="e.g. 500000">
+
+      <label for="location">Location:</label>
+      <input type="text" id="location" placeholder="e.g. Islamabad">
+
+      <button id="apply-filters">Apply Filters</button>
     </div>
+
+    <!-- Results -->
+    <div id="results"></div>  <!-- Results will be displayed here -->
   </div>
 
   <footer>
@@ -140,83 +117,98 @@
   </footer>
 
   <script>
-    // Fetch and display dynamic search results using Google CSE API
-    function fetchSearchResults(query) {
-      const searchResults = []; // This will store the real data fetched from Google CSE
-      
-      // Example of dynamically fetched data (to be replaced by real API response)
-      const mockResults = [
-        { name: 'Luxury House in Islamabad', price: 350000, location: 'Islamabad', link: 'https://example.com/house1' },
-        { name: 'Modern Villa in Islamabad', price: 450000, location: 'Islamabad', link: 'https://example.com/house2' },
-        { name: 'Apartment in Islamabad', price: 250000, location: 'Islamabad', link: 'https://example.com/house3' },
-      ];
+    const apiKey = 'AIzaSyBkHgvcFq74OJsf7So68jml0BaHWWpFzaU';  // Your API Key
+    const cx = '56fe60b981d284771';  // Your Custom Search Engine ID (cx)
 
-      return mockResults; // For now, returning mock data as an example
+    // Function to fetch search results from Google Custom Search JSON API
+    function fetchSearchResults(query) {
+      const minPrice = document.getElementById('min-price').value;
+      const maxPrice = document.getElementById('max-price').value;
+      const location = document.getElementById('location').value;
+
+      const filterQuery = `${query} ${location} price:${minPrice}-${maxPrice}`;
+
+      const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${filterQuery}&key=${apiKey}&cx=${cx}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          displaySearchResults(data.items);
+        })
+        .catch(error => {
+          console.error('Error fetching search results:', error);
+        });
     }
 
-    // Dynamically display search results
+    // Function to display search results
     function displaySearchResults(results) {
-      const propertyList = document.getElementById('property-list');
-      propertyList.innerHTML = ''; // Clear existing results
+      const resultsContainer = document.getElementById('results');
+      resultsContainer.innerHTML = '';  // Clear previous results
 
-      results.forEach(result => {
-        const propertyItem = document.createElement('div');
-        propertyItem.classList.add('property-item');
+      // Loop through results and display them
+      results.forEach((item, index) => {
+        const resultElement = document.createElement('div');
+        resultElement.classList.add('result-item');
 
-        const propertyName = result.name;
-        const propertyPrice = result.price;
-        const propertyLocation = result.location;
-        const propertyLink = result.link;
+        const title = document.createElement('h3');
+        title.textContent = item.title;
+        resultElement.appendChild(title);
 
-        propertyItem.innerHTML = `
-          <label>
-            <input type="checkbox" class="compare-checkbox" data-price="${propertyPrice}" data-location="${propertyLocation}" data-link="${propertyLink}">
-            <a href="${propertyLink}" target="_blank">${propertyName}</a> - $${propertyPrice} in ${propertyLocation}
-          </label>
-        `;
+        const link = document.createElement('a');
+        link.href = item.link;
+        link.textContent = 'View More';
+        resultElement.appendChild(link);
 
-        propertyList.appendChild(propertyItem);
+        const snippet = document.createElement('p');
+        snippet.textContent = item.snippet;
+        resultElement.appendChild(snippet);
+
+        const compareButton = document.createElement('button');
+        compareButton.textContent = 'Compare';
+        compareButton.classList.add('compare-button');
+        compareButton.onclick = function () {
+          selectForComparison(item);
+        };
+        resultElement.appendChild(compareButton);
+
+        resultsContainer.appendChild(resultElement);
       });
     }
 
-    // Simulate fetching search results (replace with actual query data)
-    const searchQuery = 'houses in Islamabad';  // This will be dynamic based on user input
-    const searchResults = fetchSearchResults(searchQuery);
-    displaySearchResults(searchResults);
+    // Function to select properties for comparison
+    let selectedProperties = [];
 
-    // Compare selected properties
-    function compareProperties() {
-      const selectedProperties = document.querySelectorAll('.compare-checkbox:checked');
-      const comparisonTableBody = document.getElementById('comparison-table-body');
-      const comparisonTableContainer = document.getElementById('comparison-table-container');
-
-      // Clear previous table rows
-      comparisonTableBody.innerHTML = '';
-
-      // Check if at least one property is selected
-      if (selectedProperties.length > 0) {
-        // Show comparison table
-        comparisonTableContainer.style.display = 'block';
-
-        selectedProperties.forEach(property => {
-          const propertyName = property.parentElement.textContent.trim();
-          const propertyPrice = property.getAttribute('data-price');
-          const propertyLocation = property.getAttribute('data-location');
-          const propertyLink = property.getAttribute('data-link');
-
-          const row = document.createElement('tr');
-
-          row.innerHTML = `
-            <td><a href="${propertyLink}" target="_blank">${propertyName}</a></td>
-            <td>${propertyLocation}</td>
-            <td>$${propertyPrice}</td>
-          `;
-          comparisonTableBody.appendChild(row);
-        });
+    function selectForComparison(property) {
+      if (selectedProperties.length < 2) {
+        selectedProperties.push(property);
+        alert(`Property added for comparison. You have selected ${selectedProperties.length} property/ies.`);
       } else {
-        alert('Please select at least one property to compare.');
+        alert('You can compare up to 2 properties only.');
+      }
+
+      if (selectedProperties.length === 2) {
+        showComparison();
       }
     }
+
+    // Function to show comparison
+    function showComparison() {
+      alert(`Comparing the following properties: \n\n${selectedProperties[0].title} \n${selectedProperties[1].title}`);
+      // You can further display detailed comparison here as needed.
+    }
+
+    // Trigger the search when the user clicks on the search button
+    document.getElementById('search-button').addEventListener('click', function() {
+      const query = document.getElementById('search-input').value;
+      fetchSearchResults(query);
+    });
+
+    // Apply filters when the user clicks on the "Apply Filters" button
+    document.getElementById('apply-filters').addEventListener('click', function() {
+      const query = document.getElementById('search-input').value;
+      fetchSearchResults(query);
+    });
   </script>
 </body>
 </html>
