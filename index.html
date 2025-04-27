@@ -30,6 +30,8 @@
       z-index: 1;
       position: relative;
       padding: 20px;
+      max-width: 800px;
+      width: 100%;
     }
     h1 {
       font-size: 2.8em;
@@ -43,9 +45,55 @@
       background: white;
       padding: 20px;
       border-radius: 20px;
-      max-width: 200px;
+      max-width: 400px;
       margin: 0 auto;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .property-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+    .property-item {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .property-item label {
+      font-size: 1.2em;
+    }
+    .property-item input {
+      margin-right: 10px;
+    }
+    .compare-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+    .compare-btn:hover {
+      background-color: #218838;
+    }
+    .comparison-table {
+      margin-top: 30px;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 0 auto;
+      color: white;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 12px 20px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .comparison-table th {
+      background-color: #28a745;
     }
     footer {
       position: absolute;
@@ -62,11 +110,82 @@
   <div class="container">
     <h1>Your Trusted Partner in Real Estate Investments</h1>
     <p>Discover valuable property deals with your expert AI real estate agent.</p>
-    <div class="gcse-search" enableAutoComplete="true" data-enableFilters="true"></div>
+
+    <div class="gcse-search" data-enableFilters="true"></div>
+
+    <!-- Property Listings Section -->
+    <div class="property-list">
+      <div class="property-item">
+        <label>
+          <input type="checkbox" class="compare-checkbox" data-price="150000" data-location="Location 1"> Property 1 - $150,000
+        </label>
+      </div>
+      <div class="property-item">
+        <label>
+          <input type="checkbox" class="compare-checkbox" data-price="200000" data-location="Location 2"> Property 2 - $200,000
+        </label>
+      </div>
+      <div class="property-item">
+        <label>
+          <input type="checkbox" class="compare-checkbox" data-price="250000" data-location="Location 3"> Property 3 - $250,000
+        </label>
+      </div>
+    </div>
+
+    <!-- Compare Button -->
+    <button class="compare-btn" onclick="compareProperties()">Compare Properties</button>
+
+    <!-- Comparison Table -->
+    <div id="comparison-table-container" style="display: none;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Location</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="comparison-table-body"></tbody>
+      </table>
+    </div>
   </div>
 
   <footer>
     © 2025 Real Estate Investment Agent. All rights reserved.
   </footer>
+
+  <script>
+    function compareProperties() {
+      const selectedProperties = document.querySelectorAll('.compare-checkbox:checked');
+      const comparisonTableBody = document.getElementById('comparison-table-body');
+      const comparisonTableContainer = document.getElementById('comparison-table-container');
+
+      // Clear previous table rows
+      comparisonTableBody.innerHTML = '';
+
+      // Check if at least one property is selected
+      if (selectedProperties.length > 0) {
+        // Show comparison table
+        comparisonTableContainer.style.display = 'block';
+
+        selectedProperties.forEach(property => {
+          const propertyName = property.parentElement.textContent.trim();
+          const propertyPrice = property.getAttribute('data-price');
+          const propertyLocation = property.getAttribute('data-location');
+
+          const row = document.createElement('tr');
+
+          row.innerHTML = `
+            <td>${propertyName}</td>
+            <td>${propertyLocation}</td>
+            <td>$${propertyPrice}</td>
+          `;
+          comparisonTableBody.appendChild(row);
+        });
+      } else {
+        alert('Please select at least one property to compare.');
+      }
+    }
+  </script>
 </body>
 </html>
