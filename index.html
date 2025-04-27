@@ -1,214 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Real Estate Investment Agent</title>
-  <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-      background-size: cover;
-      height: 100vh;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    .overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: -1;
-    }
-    .container {
-      z-index: 1;
-      position: relative;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.8em;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.5em;
-      margin-bottom: 30px;
-    }
-    .gcse-search, .filters, #results {
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      max-width: 600px;
-      margin: 0 auto;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-      margin-top: 20px;
-    }
-    .filters input {
-      padding: 8px;
-      margin: 5px;
-      width: 100%;
-    }
-    .result-item {
-      margin-bottom: 20px;
-      padding: 10px;
-      background-color: #f1f1f1;
-      border-radius: 10px;
-    }
-    .result-item h3 {
-      margin: 0;
-      font-size: 1.3em;
-    }
-    .result-item p {
-      margin: 10px 0;
-    }
-    .compare-button {
-      background-color: #007BFF;
-      color: white;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    footer {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      font-size: 0.8em;
-      color: #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Investment Agent</title>
+    <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .container {
+            z-index: 1;
+            position: relative;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+        }
+
+        .gcse-search {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            font-size: 0.8em;
+            color: #ddd;
+        }
+
+        .features-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+            background-color: #f7f7f7;
+        }
+
+        .image-container {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .features-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .content-container {
+            flex: 2;
+            max-width: 600px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Form Styling */
+        select, button {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        .filters-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            color: white;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        .filters-section select {
+            margin-right: 10px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="overlay"></div>
-  <div class="container">
-    <h1>Your Trusted Partner in Real Estate Investments</h1>
-    <p>Discover valuable property deals with your expert AI real estate agent.</p>
+    <div class="overlay"></div>
+    <div class="container">
+        <h1>Your Trusted Partner in Real Estate Investments</h1>
+        <p>Discover valuable property deals with your expert AI real estate agent.</p>
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <form id="search-form" onsubmit="searchProperties(); return false;">
+                <label for="price-range">Price Range:</label>
+                <select id="price-range">
+                    <option value="10000000">PKR 10,000,000+</option>
+                    <option value="20000000">PKR 20,000,000+</option>
+                    <option value="30000000">PKR 30,000,000+</option>
+                    <option value="40000000">PKR 40,000,000+</option>
+                    <option value="50000000">PKR 50,000,000+</option>
+                </select>
 
-    <!-- Search bar -->
-    <div class="gcse-search">
-      <input type="text" id="search-input" placeholder="Search for properties">
-      <button id="search-button">Search</button>
+                <label for="city">City:</label>
+                <select id="city">
+                    <option value="Islamabad">Islamabad</option>
+                    <option value="Lahore">Lahore</option>
+                    <option value="Karachi">Karachi</option>
+                    <option value="Rawalpindi">Rawalpindi</option>
+                </select>
+
+                <label for="property-type">Property Type:</label>
+                <select id="property-type">
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="commercial">Commercial</option>
+                </select>
+
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <!-- Google Custom Search -->
+        <div class="gcse-search" enableAutoComplete="true" data-enableFilters="true"></div>
     </div>
 
-    <!-- Filters -->
-    <div class="filters">
-      <label for="min-price">Min Price:</label>
-      <input type="number" id="min-price" placeholder="e.g. 100000">
-
-      <label for="max-price">Max Price:</label>
-      <input type="number" id="max-price" placeholder="e.g. 500000">
-
-      <label for="location">Location:</label>
-      <input type="text" id="location" placeholder="e.g. Islamabad">
-
-      <button id="apply-filters">Apply Filters</button>
+    <!-- Features Section -->
+    <div class="features-section">
+        <div class="image-container">
+            <img src="https://example.com/your-image.jpg" alt="Real Estate Image" class="features-image">
+        </div>
+        <div class="content-container">
+            <h2>Why Choose Our Real Estate Investment Agent?</h2>
+            <p>Our AI-powered agent helps you find the best real estate investments in no time. Whether you're looking for residential, commercial, or luxury properties, we have it all covered.</p>
+            <p>With personalized search criteria such as location, price, and property type, you can quickly narrow down your options to match your specific needs. Our agent does all the heavy lifting, saving you valuable time and effort.</p>
+            <p>Get detailed insights, price comparisons, and expert recommendations on each property to make informed decisions about your investments.</p>
+        </div>
     </div>
 
-    <!-- Results -->
-    <div id="results"></div>  <!-- Results will be displayed here -->
-  </div>
+    <footer>
+        © 2025 Real Estate Investment Agent. All rights reserved.
+    </footer>
 
-  <footer>
-    © 2025 Real Estate Investment Agent. All rights reserved.
-  </footer>
+    <script>
+        const apiKey = 'AIzaSyBkHgvcFq74OJsf7So68jml0BaHWWpFzaU';
+        const cx = '56fe60b981d284771';
+        const baseUrl = 'https://www.googleapis.com/customsearch/v1';
 
-  <script>
-    const apiKey = 'AIzaSyBkHgvcFq74OJsf7So68jml0BaHWWpFzaU';  // Your API Key
-    const cx = '56fe60b981d284771';  // Your Custom Search Engine ID (cx)
+        function searchProperties() {
+            const priceRange = document.getElementById('price-range').value;
+            const city = document.getElementById('city').value;
+            const propertyType = document.getElementById('property-type').value;
 
-    // Function to fetch search results from Google Custom Search JSON API
-    function fetchSearchResults(query) {
-      const minPrice = document.getElementById('min-price').value;
-      const maxPrice = document.getElementById('max-price').value;
-      const location = document.getElementById('location').value;
+            const searchQuery = `${propertyType} in ${city} price ${priceRange}`;
 
-      const filterQuery = `${query} ${location} price:${minPrice}-${maxPrice}`;
-
-      const apiUrl = `https://www.googleapis.com/customsearch/v1?q=${filterQuery}&key=${apiKey}&cx=${cx}`;
-
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          displaySearchResults(data.items);
-        })
-        .catch(error => {
-          console.error('Error fetching search results:', error);
-        });
-    }
-
-    // Function to display search results
-    function displaySearchResults(results) {
-      const resultsContainer = document.getElementById('results');
-      resultsContainer.innerHTML = '';  // Clear previous results
-
-      // Loop through results and display them
-      results.forEach((item, index) => {
-        const resultElement = document.createElement('div');
-        resultElement.classList.add('result-item');
-
-        const title = document.createElement('h3');
-        title.textContent = item.title;
-        resultElement.appendChild(title);
-
-        const link = document.createElement('a');
-        link.href = item.link;
-        link.textContent = 'View More';
-        resultElement.appendChild(link);
-
-        const snippet = document.createElement('p');
-        snippet.textContent = item.snippet;
-        resultElement.appendChild(snippet);
-
-        const compareButton = document.createElement('button');
-        compareButton.textContent = 'Compare';
-        compareButton.classList.add('compare-button');
-        compareButton.onclick = function () {
-          selectForComparison(item);
-        };
-        resultElement.appendChild(compareButton);
-
-        resultsContainer.appendChild(resultElement);
-      });
-    }
-
-    // Function to select properties for comparison
-    let selectedProperties = [];
-
-    function selectForComparison(property) {
-      if (selectedProperties.length < 2) {
-        selectedProperties.push(property);
-        alert(`Property added for comparison. You have selected ${selectedProperties.length} property/ies.`);
-      } else {
-        alert('You can compare up to 2 properties only.');
-      }
-
-      if (selectedProperties.length === 2) {
-        showComparison();
-      }
-    }
-
-    // Function to show comparison
-    function showComparison() {
-      alert(`Comparing the following properties: \n\n${selectedProperties[0].title} \n${selectedProperties[1].title}`);
-      // You can further display detailed comparison here as needed.
-    }
-
-    // Trigger the search when the user clicks on the search button
-    document.getElementById('search-button').addEventListener('click', function() {
-      const query = document.getElementById('search-input').value;
-      fetchSearchResults(query);
-    });
-
-    // Apply filters when the user clicks on the "Apply Filters" button
-    document.getElementById('apply-filters').addEventListener('click', function() {
-      const query = document.getElementById('search-input').value;
-      fetchSearchResults(query);
-    });
-  </script>
+            fetch(`${baseUrl}?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(searchQuery)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const searchResults = data.items;
+                    let resultHtml = '<h2>Search Results</h2>';
+                    searchResults.forEach(result => {
+                        resultHtml += `
+                            <div class="search-result">
+                                <h3>${result.title}</h3>
+                                <p>${result.snippet}</p>
+                                <a href="${result.link}" target="_blank">View Details</a>
+                            </div>
+                        `;
+                    });
+                    document.getElementById('search-results').innerHTML = resultHtml;
+                })
+                .catch(error => console.error('Error fetching search results:', error));
+        }
+    </script>
 </body>
+
 </html>
