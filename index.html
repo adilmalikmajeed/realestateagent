@@ -118,16 +118,62 @@
         </div>
     </div>
 
-    <footer>
-        © 2025 Real Estate Investment Agent. All rights reserved.
-    </footer>
+    <div id="search-results" class="results-section" style="margin: 50px auto; max-width: 1200px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    <!-- Results will appear here -->
+</div>
 
-    <script>
-        // Placeholder searchProperties function
-        function searchProperties() {
-            alert('Search triggered!');
+<footer>
+    © 2025 Real Estate Investment Agent. All rights reserved.
+</footer>
+
+<script>
+  const apiKey = 'AIzaSyBkHgvcFq74OJsf7So68jml0BaHWWpFzaU'; // your API Key
+  const cx = '56fe60b981d284771'; // your CX ID
+
+  function searchProperties() {
+    const priceRange = document.getElementById('price-range').value;
+    const city = document.getElementById('city').value;
+    const propertyType = document.getElementById('property-type').value;
+
+    const query = `${propertyType} for sale in ${city} above PKR ${priceRange}`;
+
+    fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`)
+      .then(response => response.json())
+      .then(data => {
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (data.items) {
+          data.items.forEach(item => {
+            const card = document.createElement('div');
+            card.style.background = '#fff';
+            card.style.color = '#333';
+            card.style.border = '1px solid #ddd';
+            card.style.borderRadius = '10px';
+            card.style.padding = '20px';
+            card.style.width = '300px';
+            card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+            card.style.transition = 'transform 0.3s';
+            card.style.cursor = 'pointer';
+            card.onmouseover = () => card.style.transform = 'scale(1.03)';
+            card.onmouseout = () => card.style.transform = 'scale(1)';
+
+            card.innerHTML = `
+              <h3 style="margin-top: 0;">${item.title}</h3>
+              <p>${item.snippet}</p>
+              <a href="${item.link}" target="_blank" style="color: #007bff; text-decoration: none;">View Details</a>
+            `;
+
+            resultsContainer.appendChild(card);
+          });
+        } else {
+          resultsContainer.innerHTML = '<p>No results found. Try different filters.</p>';
         }
-    </script>
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+</script>
 </body>
-
 </html>
