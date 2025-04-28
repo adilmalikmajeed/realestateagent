@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Investment Agent</title>
-    <script async src="https://cse.google.com/cse.js?cx=56fe60b981d284771"></script>
     <style>
         body {
             margin: 0;
@@ -47,15 +46,6 @@
         p {
             font-size: 1.5em;
             margin-bottom: 30px;
-        }
-
-        .gcse-search {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         footer {
@@ -126,6 +116,30 @@
         .filters-section select {
             margin-right: 10px;
         }
+
+        .search-results {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .search-result {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .search-result a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 
@@ -134,6 +148,7 @@
     <div class="container">
         <h1>Your Trusted Partner in Real Estate Investments</h1>
         <p>Discover valuable property deals with your expert AI real estate agent.</p>
+
         <!-- Filters Section -->
         <div class="filters-section">
             <form id="search-form" onsubmit="searchProperties(); return false;">
@@ -164,8 +179,9 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-        <!-- Google Custom Search -->
-        <div class="gcse-search" enableAutoComplete="true" data-enableFilters="true"></div>
+
+        <!-- Search Results Section -->
+        <div id="search-results" class="search-results"></div>
     </div>
 
     <!-- Features Section -->
