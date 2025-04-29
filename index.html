@@ -1,180 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Real Estate Investment Agent</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Investment Agent</title>
   <style>
-    /* Base */
     body {
-      body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: url('https://images.unsplash.com/photo-1599423300746-b62533397364?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-}
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
 
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .container {
+      z-index: 1;
+      position: relative;
+      padding: 20px;
     }
 
     h1 {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 2.5rem;
+      font-size: 2.8em;
+      margin-bottom: 10px;
     }
 
-    /* Glassmorphism filter area */
-    .filter-box {
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px 30px;
-      margin: 30px auto;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      max-width: 1000px;
-    }
-
-    .filter-box select,
-    .filter-box button {
-      padding: 10px 15px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-    }
-
-    .filter-box select {
-      background: rgba(255, 255, 255, 0.8);
-      color: #000;
-    }
-
-    .filter-box button {
-      background-color: #ff914d;
+    .filters-section {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
       color: white;
-      cursor: pointer;
-    }
-
-    .filter-box button:hover {
-      background-color: #ff6b00;
-    }
-
-    /* Results Section */
-    .results {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+      border-radius: 10px;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-      padding: 20px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.95);
-      color: #222;
-      border-radius: 20px;
-      padding: 20px;
-      width: 300px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      opacity: 0;
-      transform: scale(0.95);
-      animation: fadeInUp 0.5s forwards;
+    .filters-section label {
+      margin-right: 10px;
+      white-space: nowrap;
     }
 
-    .card h3 {
-      margin-top: 0;
+    select,
+    button {
+      padding: 10px;
+      font-size: 1em;
+      margin: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #fff;
     }
 
-    .card a {
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    /* Animation */
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      font-size: 0.8em;
+      color: #ddd;
     }
   </style>
 </head>
+
 <body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h1>Your Trusted Partner in Real Estate Investments</h1>
 
-  <h1>Your Trusted Partner in Real Estate Investments</h1>
+    <div class="filters-section">
+      <form id="search-form" onsubmit="searchProperties(); return false;">
+        <label for="price-range">Price Range:</label>
+        <select id="price-range">
+          <option value="10000000">PKR 10,000,000+</option>
+          <option value="20000000">PKR 20,000,000+</option>
+          <option value="30000000">PKR 30,000,000+</option>
+          <option value="40000000">PKR 40,000,000+</option>
+          <option value="50000000">PKR 50,000,000+</option>
+        </select>
 
-  <!-- Glass Filter Section -->
-  <div class="filter-box">
-    <select>
-      <option>Price Range</option>
-      <option>PKR 10,000,000+</option>
-      <option>PKR 5,000,000 - 10,000,000</option>
-    </select>
-    <select>
-      <option>City</option>
-      <option>Islamabad</option>
-      <option>Lahore</option>
-      <option>Karachi</option>
-    </select>
-    <select>
-      <option>Property Type</option>
-      <option>House</option>
-      <option>Plot</option>
-      <option>Commercial</option>
-    </select>
-    <button>Search</button>
-  </div>
+        <label for="city">City:</label>
+        <select id="city">
+          <option value="Islamabad">Islamabad</option>
+          <option value="Lahore">Lahore</option>
+          <option value="Karachi">Karachi</option>
+          <option value="Rawalpindi">Rawalpindi</option>
+        </select>
 
-  <!-- Results -->
-  <div class="results">
-    <div class="card">
-      <h3>Houses for Sale in Lahore - Zameen.com</h3>
-      <p>5 marla house in Lahore in Dec 2016 was over PKR 10,000,000. As of …</p>
-      <a href="#">View Details</a>
-    </div>
-    <div class="card">
-      <h3>Houses for Rent in Islamabad - Zameen.com</h3>
-      <p>Rental price trend: PKR 22k – 4.5 lakh/mo. 1 kanal houses slightly higher…</p>
-      <a href="#">View Details</a>
-    </div>
-    <div class="card">
-      <h3>Houses for Sale in Islamabad - Zameen.com</h3>
-      <p>2 kanal: PKR 1.6 crore. 9-bed E-7 house: PKR 45 crore…</p>
-      <a href="#">View Details</a>
+        <label for="property-type">Property Type:</label>
+        <select id="property-type">
+          <option value="house">House</option>
+          <option value="apartment">Apartment</option>
+          <option value="commercial">Commercial</option>
+        </select>
+
+        <button type="submit">Search</button>
+      </form>
     </div>
   </div>
-<script>
-  const filterButton = document.querySelector('.filter-box button');
-  const priceSelect = document.querySelectorAll('.filter-box select')[0];
-  const citySelect = document.querySelectorAll('.filter-box select')[1];
-  const typeSelect = document.querySelectorAll('.filter-box select')[2];
-  const cards = document.querySelectorAll('.card');
 
-  filterButton.addEventListener('click', () => {
-    const price = priceSelect.value;
-    const city = citySelect.value;
-    const type = typeSelect.value;
+  <div id="search-results" class="results-section" style="margin: 50px auto; max-width: 1200px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    <!-- Results will appear here -->
+  </div>
 
-    cards.forEach(card => {
-      const text = card.textContent.toLowerCase();
-      const matchPrice = price === 'Price Range' || text.includes(price.toLowerCase());
-      const matchCity = city === 'City' || text.includes(city.toLowerCase());
-      const matchType = type === 'Property Type' || text.includes(type.toLowerCase());
 
-      if (matchPrice && matchCity && matchType) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-</script>
 
+  <footer>
+    © 2025 Real Estate Investment Agent. All rights reserved.
+  </footer>
+
+  <script>
+    const apiKey = 'AIzaSyBkHgvcFq74OJsf7So68jml0BaHWWpFzaU'; // your API Key
+    const cx = '56fe60b981d284771'; // your CX ID
+
+    function searchProperties() {
+      const priceRange = document.getElementById('price-range').value;
+      const city = document.getElementById('city').value;
+      const propertyType = document.getElementById('property-type').value;
+
+      const query = `${propertyType} for sale in ${city} above PKR ${priceRange}`;
+
+      fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${encodeURIComponent(query)}`)
+        .then(response => response.json())
+        .then(data => {
+          const resultsContainer = document.getElementById('search-results');
+          resultsContainer.innerHTML = '';
+
+          if (data.items) {
+            data.items.forEach(item => {
+              const card = document.createElement('div');
+              card.style.background = '#fff';
+              card.style.color = '#333';
+              card.style.border = '1px solid #ddd';
+              card.style.borderRadius = '10px';
+              card.style.padding = '20px';
+              card.style.width = '300px';
+              card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+              card.style.transition = 'transform 0.3s';
+              card.style.cursor = 'pointer';
+              card.onmouseover = () => card.style.transform = 'scale(1.03)';
+              card.onmouseout = () => card.style.transform = 'scale(1)';
+
+              card.innerHTML = `
+                <h3 style="margin-top: 0;">${item.title}</h3>
+                <p>${item.snippet}</p>
+                <a href="${item.link}" target="_blank" style="color: #007bff; text-decoration: none;">View Details</a>
+              `;
+
+              resultsContainer.appendChild(card);
+            });
+          } else {
+            resultsContainer.innerHTML = '<p>No results found. Try different filters.</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
+
 </html>
