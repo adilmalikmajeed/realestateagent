@@ -146,6 +146,32 @@
       <a href="#">View Details</a>
     </div>
   </div>
+<script>
+  const filterButton = document.querySelector('.filter-box button');
+  const priceSelect = document.querySelectorAll('.filter-box select')[0];
+  const citySelect = document.querySelectorAll('.filter-box select')[1];
+  const typeSelect = document.querySelectorAll('.filter-box select')[2];
+  const cards = document.querySelectorAll('.card');
+
+  filterButton.addEventListener('click', () => {
+    const price = priceSelect.value;
+    const city = citySelect.value;
+    const type = typeSelect.value;
+
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const matchPrice = price === 'Price Range' || text.includes(price.toLowerCase());
+      const matchCity = city === 'City' || text.includes(city.toLowerCase());
+      const matchType = type === 'Property Type' || text.includes(type.toLowerCase());
+
+      if (matchPrice && matchCity && matchType) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
