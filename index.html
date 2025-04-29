@@ -12,7 +12,7 @@
             font-family: 'Poppins', sans-serif;
             background: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
             background-size: cover;
-            height: 100vh;
+           min-height: 100vh;
             color: white;
             text-align: center;
             display: flex;
@@ -119,6 +119,12 @@
     </div>
 
     <div id="search-results" class="results-section" style="margin: 50px auto; max-width: 1200px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        <div id="back-button" style="margin-top: 30px;">
+  <button onclick="scrollToTop()" style="padding: 10px 20px; font-size: 1em; border-radius: 5px; border: none; background-color: #007bff; color: white; cursor: pointer;">
+    Back to Home
+  </button>
+</div>
+
     <!-- Results will appear here -->
 </div>
 
@@ -173,6 +179,8 @@
       .catch(error => {
         console.error('Error:', error);
       });
+      function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
