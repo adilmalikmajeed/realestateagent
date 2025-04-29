@@ -119,16 +119,16 @@
     </div>
 
     <div id="search-results" class="results-section" style="margin: 50px auto; max-width: 1200px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-        <div id="back-button" style="margin: 40px auto;">
-  <button onclick="scrollToTop()" style="padding: 12px 24px; font-size: 1em; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
-    🔙 Back to Home
-  </button>
-</div>
+        
 </div>
 
     <!-- Results will appear here -->
 </div>
-
+<div id="back-button" style="margin: 40px auto;">
+  <button onclick="scrollToTop()" style="padding: 12px 24px; font-size: 1em; background-color: #007bff; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🔙 Back to Home
+  </button>
+</div>
 <footer>
     © 2025 Real Estate Investment Agent. All rights reserved.
 </footer>
@@ -180,9 +180,10 @@
       .catch(error => {
         console.error('Error:', error);
       });
-      function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+     
   }
+     function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 </script>
 </body>
 </html>
